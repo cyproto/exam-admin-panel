@@ -1,0 +1,45 @@
+<div class="login-page">
+    <div class="content">
+        <form class="login-form" fxFlex [formGroup]="loginForm" >
+            <div class="text-center">
+                <h2 class="app-name">Admin Login</h2>
+            </div>
+            <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Email ID</mat-label>
+                        <input matInput [formControl]="loginForm.controls['email']" [(ngModel)]="autoFillEmail">
+                        <mat-error *ngIf="submitted && f.email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="submitted && f.email.hasError('pattern')">
+                            Email is <strong>invalid</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <div style="margin-bottom: 20px;" *ngIf="submitted && !userExistsFlag">
+                        <strong style="color: red;">Account does not exist. Enter a different email or <a [routerLinkActive]="'active'" [routerLink]="['/signup']">get a new account</a>.</strong>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" [formControl]="loginForm.controls['password']">
+                        <mat-error *ngIf="submitted && f.password.hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <div style="margin-bottom: 20px;" *ngIf="submitted && wrongPasswordFlag">
+                        <strong style="color: red;">Wrong password.</strong>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill style="text-align: center;">
+                    <button mat-raised-button class="login-button" (click)="onLogin()"><span style="font-weight: bold;">Login</span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
