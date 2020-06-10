@@ -4,11 +4,20 @@ This repository contains an admin panel whose current use is just to manage ques
 
 It is a type of internal system just to have control over the exam questions. 
 
-### Future scope
+## Live demo
+
+[Exam admin panel](https://exam-admin-panel.firebaseapp.com/login "Exam admin panel")
+
+**Email:** admin@mail.com
+**Password:** 123456
+
+## Future scope
+
 - User account control of whoever is taking the test.
 - Manage cutoff marks.
 
 ## Versions
+
 - **angular/cli:** 8.3.12
 - **angular/core:** 8.2.11
 - **angular/compiler:** 8.2.11
@@ -16,6 +25,7 @@ It is a type of internal system just to have control over the exam questions.
 - **npm:** 5.8.0
 
 ## Running the app
+
 ```bash
 git clone https://github.com/cyproto/exam-admin-panel.git
 cd exam-admin-panel
@@ -24,6 +34,7 @@ ng serve
 ```
 
 ## Screenshots
+
 | <img src="https://i.imgur.com/y8Mp5mw.png" width="450">  |   <img src="https://i.imgur.com/rf0O3Cg.png" width="450"> |
 | ------------ | ------------ |
 | <img src="https://i.imgur.com/XX8RRW7.png" width="450">  |  <img src="https://i.imgur.com/jCV87by.png" width="450"> |

@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "exam-admin-panel",
+    "public": "dist/exam-admin-panel",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
