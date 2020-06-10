@@ -1,0 +1,68 @@
+<h2 style="text-align: center; margin-top: 30px;"><span class="page-heading">Exam Questions</span></h2>
+<div fxLayout="row wrap">
+    <button (click)="logout()" class="logout-button" mat-raised-button>Logout <mat-icon>exit_to_app</mat-icon></button>
+</div>
+<div class="row" style="text-align: center;">
+<mat-form-field color="primary" class="search-bar" appearance="outline">
+    <mat-label style="font-size: larger;">Search</mat-label>
+    <input matInput class="form-control" type="search" name="search" (input)="onSearchChange($event.target.value)"
+        [(ngModel)]="searchKitchen" autocomplete="off" placeholder="Search by Question or Options">
+</mat-form-field>
+</div>
+<div *ngIf="filteredQuestionArray.length == 0 && !areQuestionsPulled" class="mat-spinner">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<div fxLayout="row wrap">
+    <div *ngFor="let question of filteredQuestionArray; let questionIndex = index;" fxFlex.gt-sm="50" fxFlex.gt-xs="50"
+        fxFlex="100">
+        <div class="questions-div mat-elevation-z4" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <div fxLayout="row wrap" *ngIf="question" style="vertical-align: middle;">
+                <div class="current-question-div" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                    Q{{ questionIndex+1 }}) {{question.question}}
+                </div>
+            </div>
+            <mat-radio-group *ngIf="question" [(ngModel)]="question.selectedOption" [disabled]="true">
+                <div fxLayout="row wrap" *ngIf="question" style="margin-top: 3%; vertical-align: middle;">
+                    <mat-radio-button #radio_button_1 color="primary" class="current-option-div" value="option_1"
+                        [ngClass]="{'correct-option-class':radio_button_1.value===question.selectedOption && question.selectedOption===question.correct_option || radio_button_1.value===question.correct_option }">
+                        <span class="option-span">{{question.option_1}}</span>
+                    </mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" *ngIf="question" style="margin-top: 2%; vertical-align: middle;">
+                    <mat-radio-button #radio_button_2 color="primary" class="current-option-div" value="option_2"
+                        [ngClass]="{'correct-option-class':radio_button_2.value===question.selectedOption && question.selectedOption===question.correct_option || radio_button_2.value===question.correct_option }">
+                        <span class="option-span">{{question.option_2}}</span>
+                    </mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" *ngIf="question" style="margin-top: 2%; vertical-align: middle;">
+                    <mat-radio-button #radio_button_3 color="primary" class="current-option-div" value="option_3"
+                        [ngClass]="{'correct-option-class':radio_button_3.value===question.selectedOption && question.selectedOption===question.correct_option || radio_button_3.value===question.correct_option }">
+                        <span class="option-span">{{question.option_3}}</span>
+                    </mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" *ngIf="question" style="margin-top: 2%; vertical-align: middle;">
+                    <mat-radio-button #radio_button_4 color="primary" class="current-option-div" value="option_4"
+                        [ngClass]="{'correct-option-class':radio_button_4.value===question.selectedOption && question.selectedOption===question.correct_option || radio_button_4.value===question.correct_option }">
+                        <span class="option-span">{{question.option_4}}</span>
+                    </mat-radio-button>
+                </div>
+            </mat-radio-group>
+            <div class="row" style="margin-top: 10px;">
+                <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" fxLayoutAlign="end end space-between">
+                    <button mat-icon-button class="edit-add-buttons" (click)="editQuestion(question)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button class="edit-add-buttons" (click)="deleteQuestion(question.questionId)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 *ngIf="filteredQuestionArray.length == 0" style="text-align: center; margin-top: 30px;"><span class="page-heading">No results found</span></h2>
+<div class="custom-button" fxLayout="row" fxLayoutAlign="end end">
+    <button color="primary" class="mat-fab-add-button" mat-fab (click)="addQuestion()">
+        <mat-icon>adds</mat-icon>
+    </button>
+</div>

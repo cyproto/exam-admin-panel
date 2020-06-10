@@ -1,0 +1,119 @@
+<h2 style="margin-top: 30px;"><span class="page-heading">{{ questionOperation }} Question</span>
+</h2>
+<div class="row" *ngIf="questionOperation == 'Add'">
+    <form class="login-form" fxFlex [formGroup]="questionForm">
+        <div fxLayout="row wrap" style="margin-top: 30px;">
+            <mat-form-field class="question-text-area" appearance="fill">
+                <mat-label>Question</mat-label>
+                <textarea matInput [formControl]="questionForm.controls['question']"
+                    [(ngModel)]="questionObject.question" rows="5" required
+                    placeholder="Enter question here."></textarea>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field style="width: 45%;" appearance="outline">
+                    <mat-label>Option 1</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_1']"
+                        [(ngModel)]="options.option_1">
+                </mat-form-field>
+                <mat-form-field style="width: 45%; margin-left: 10%;" appearance="outline">
+                    <mat-label>Option 2</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_2']"
+                        [(ngModel)]="options.option_2">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field style="width: 45%;" appearance="outline">
+                    <mat-label>Option 3</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_3']"
+                        [(ngModel)]="options.option_3">
+                </mat-form-field>
+                <mat-form-field style="width: 45%; margin-left: 10%;" appearance="outline">
+                    <mat-label>Option 4</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_4']"
+                        [(ngModel)]="options.option_4">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+                <mat-form-field style="width: 50%;" appearance="outline">
+                    <mat-label>Correct Option</mat-label>
+                    <mat-select required [formControl]="questionForm.controls['correct_answer']"
+                        [(ngModel)]="questionObject.correct_answer">
+                        <mat-option *ngFor="let temp of options | keyvalue; let index = index;" [value]="temp.key">
+                            Option {{index+1}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center">
+            <button [disabled]="questionForm.invalid" mat-raised-button color="primary" type="submit"
+                (click)="addQuestion()" style="margin-left: 20px;">Submit</button>
+            <button mat-button color="warn" type="reset">Reset</button>
+        </div>
+    </form>
+</div>
+
+<div class="row" *ngIf="questionOperation == 'Edit'">
+    <form class="login-form" fxFlex [formGroup]="questionForm">
+        <div fxLayout="row wrap" style="margin-top: 30px;">
+            <mat-form-field class="question-text-area" appearance="fill">
+                <mat-label>Question</mat-label>
+                <textarea matInput [formControl]="questionForm.controls['question']"
+                    [(ngModel)]="questionData.question" rows="5" required
+                    placeholder="Enter question here."></textarea>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field style="width: 45%;" appearance="outline">
+                    <mat-label>Option 1</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_1']"
+                        [(ngModel)]="questionData.option_1">
+                </mat-form-field>
+                <mat-form-field style="width: 45%; margin-left: 10%;" appearance="outline">
+                    <mat-label>Option 2</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_2']"
+                        [(ngModel)]="questionData.option_2">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field style="width: 45%;" appearance="outline">
+                    <mat-label>Option 3</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_3']"
+                        [(ngModel)]="questionData.option_3">
+                </mat-form-field>
+                <mat-form-field style="width: 45%; margin-left: 10%;" appearance="outline">
+                    <mat-label>Option 4</mat-label>
+                    <input matInput required [formControl]="questionForm.controls['option_4']"
+                        [(ngModel)]="questionData.option_4">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100">
+                <mat-form-field style="width: 50%;" appearance="outline">
+                    <mat-label>Correct Option</mat-label>
+                    <mat-select required [formControl]="questionForm.controls['correct_answer']"
+                        [(ngModel)]="questionData.correct_option">
+                        <mat-option *ngFor="let temp of options | keyvalue; let index = index;" [value]="temp.key">
+                            Option {{index+1}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center">
+            <button [disabled]="questionForm.invalid" mat-raised-button color="primary" type="submit"
+                (click)="addQuestion()" style="margin-left: 20px;">Submit
+            </button>
+        </div>
+    </form>
+</div>
